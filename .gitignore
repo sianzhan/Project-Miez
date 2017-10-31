@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+/Project Miez/Project Miez.VC.VC.opendb
+/Project Miez/Project Miez.VC.db
