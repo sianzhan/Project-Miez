@@ -4,4 +4,5 @@ int main()
 { 
 	printf("Hello World Bla bla blb\n");
 	printf("Hello World aaa\n");
+	printf("DADA NOOB!\n");
 }
