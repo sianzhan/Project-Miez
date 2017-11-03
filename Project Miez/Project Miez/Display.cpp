@@ -1,5 +1,6 @@
 #include "Display.h"
-#include <glut.h>
+#include "Craftian/Craftian.h"
+#include <GLUT/glut.h>
 
 const string Display::windowName = "Project Miez";
 int Display::windowWidth = 800;
@@ -10,7 +11,8 @@ void Display::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glColor3f(0.5, 0.5, 0.5);
-	glutSolidTeapot(0.2);
+	Craftian robot;
+	robot.draw();
 	glPopMatrix();
 	glutSwapBuffers();
 }

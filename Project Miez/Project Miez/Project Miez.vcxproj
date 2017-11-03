@@ -69,8 +69,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>include;$(IncludePath)</IncludePath>
-    <LibraryPath>lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../include;$(IncludePath)</IncludePath>
+    <LibraryPath>../lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,11 +113,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Craftian\Craftian.cpp" />
+    <ClCompile Include="Craftian\CraftBody.cpp" />
+    <ClCompile Include="Craftian\CraftHand.cpp" />
+    <ClCompile Include="Craftian\CraftHead.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Craftian\CraftBody.cpp" />
+    <ClCompile Include="Craftian\CraftHand.cpp" />
+    <ClCompile Include="Craftian\CraftHead.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Craftian\Craftian.h" />
+    <ClInclude Include="Craftian\CraftBody.h" />
+    <ClInclude Include="Craftian\CraftHand.h" />
+    <ClInclude Include="Craftian\CraftHead.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Craftian\CraftBody.h" />
+    <ClInclude Include="Craftian\CraftHand.h" />
+    <ClInclude Include="Craftian\CraftHead.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

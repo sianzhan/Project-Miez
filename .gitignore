@@ -37,5 +37,5 @@
 !/Project Miez/Debug/*.dll
 /Project Miez/Project Miez/Debug
 
-/Project Miez/Project Miez/lib/*.*
-!/Project Miez/Project Miez/lib/*.*
+/Project Miez/lib/*.*
+!/Project Miez/lib/*.*
