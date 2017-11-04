@@ -43,7 +43,7 @@ void Display::reshape(int width, int height)
 
 void Display::keydown(unsigned char key, int, int)
 {
-
+	printf("key_down");
 }
 
 void Display::keyup(unsigned char key, int, int)
