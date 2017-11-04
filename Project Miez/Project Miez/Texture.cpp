@@ -141,18 +141,18 @@ GLuint Texture::GenTexture(char* filepath)
 			return 0;
 		}
 		glGenTextures(1, &textureID);
-		glBindTexture(GL_TEXTURE_RECTANGLE_ARB, textureID);
+		glBindTexture(GL_TEXTURE_2D, textureID);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-		/*glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
-		glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		if (alpha) {
-			gluBuild2DMipmaps(GL_TEXTURE_RECTANGLE_ARB, GL_RGBA, w, h, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)image);
+			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, w, h, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)image);
 		}
 		else {
-			gluBuild2DMipmaps(GL_TEXTURE_RECTANGLE_ARB, GL_RGB, w, h, GL_BGR_EXT, GL_UNSIGNED_BYTE, (GLvoid*)image);
+			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, w, h, GL_BGR_EXT, GL_UNSIGNED_BYTE, (GLvoid*)image);
 		}
 
 		delete image;
@@ -166,13 +166,13 @@ GLuint Texture::GenTexture(char* filepath)
 		{
 			cvFlip(img);
 			glGenTextures(1, &textureID);
-			glBindTexture(GL_TEXTURE_RECTANGLE_ARB, textureID);
+			glBindTexture(GL_TEXTURE_2D, textureID);
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			/*glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
-			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			gluBuild2DMipmaps(GL_TEXTURE_RECTANGLE_ARB, GL_RGB, img->width, img->height, GL_BGR_EXT, GL_UNSIGNED_BYTE, img->imageData);
+			/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, img->width, img->height, GL_BGR_EXT, GL_UNSIGNED_BYTE, img->imageData);
 		}
 		else printf("cannot find %s \n", filepath);
 	}

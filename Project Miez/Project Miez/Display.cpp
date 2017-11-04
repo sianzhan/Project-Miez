@@ -74,7 +74,7 @@ void Display::init(int argc, char *argv[])
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glClearDepth(1.0f);
 
-	glEnable(GL_TEXTURE_RECTANGLE_ARB);
+	glEnable(GL_TEXTURE_2D);
 	glutDisplayFunc(draw);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keydown);
