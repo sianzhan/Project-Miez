@@ -1,23 +1,17 @@
 #include "CraftBody.h"
+#include "Skin.h"
 #include <cstdio>
 
-CraftBody::CraftBody(GLuint skinId):skinId(skinId)
+CraftBody::CraftBody(Skin skin):skin(skin)
 {
-	CraftCube::setTex(this->skinId, 64);
-
-	//https://github.com/minotar/skin-spec
-	CraftCube::setTop(20, 16, 28, 20 , 0);
-	CraftCube::setBtm(28, 16, 36, 20, 0);
-	CraftCube::setRight(16, 20, 20, 32, 0);
-	CraftCube::setFront(20, 20, 28, 32, 0);
-	CraftCube::setLeft(28, 20, 32, 32, 0);
-	CraftCube::setBack(32, 20, 40, 32, 0);
+	CraftCube::setSkin(skin);
+	CraftCube::setSkinPart(Skin::TORSO);
 }
 
-void CraftBody::setSkinId(int skinId)
+void CraftBody::setSkin(Skin skin)
 {
-	this->skinId = skinId;
-	CraftCube::setTex(this->skinId, 64);
+	this->skin = skin;
+	CraftCube::setSkinPart(Skin::TORSO);
 }
 
 void CraftBody::draw()

@@ -104,7 +104,6 @@ bool Texture::LoadPngImage(char *name, int &outWidth, int &outHeight, bool &outH
 	else {
 		outHasAlpha = false;
 	}
-
 	png_bytepp row_pointers = png_get_rows(png_ptr, info_ptr);
 
 	for (int i = 0; i < outHeight; i++) {
@@ -148,7 +147,6 @@ GLuint Texture::GenTexture(char* filepath)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
 		if (alpha) {
 			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, w, h, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)image);
 		}

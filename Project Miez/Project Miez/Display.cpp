@@ -75,6 +75,8 @@ void Display::init(int argc, char *argv[])
 	glClearDepth(1.0f);
 
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND); //For Transparency
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glutDisplayFunc(draw);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keydown);
@@ -82,7 +84,7 @@ void Display::init(int argc, char *argv[])
 	glutTimerFunc(16, timer, 0);
 
 	glewInit();
-	robot = new Craftian(Texture::GenTexture("res\\skin\\skin_girl.png"));
+	robot = new Craftian(Texture::GenTexture("res\\skin\\test.png"), 64);
 }
 
 

@@ -1,16 +1,13 @@
 //This is the robot class
 
 #pragma once
-#include "CraftBody.h"
-#include "CraftHead.h"
+#include <GLUT/glut.h>
+#include "Skin.h"
 class Craftian
 {
-	CraftBody body;
-	CraftHead head;
-	GLuint skinId;
-
+	Skin skin;
 public:
 	Craftian() {};
-	Craftian(GLuint);
+	Craftian(GLuint, float);
 	void draw();
 };

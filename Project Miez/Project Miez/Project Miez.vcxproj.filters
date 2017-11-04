@@ -54,6 +54,9 @@
     <ClCompile Include="Craftian\CraftCube.cpp">
       <Filter>Source Files\Craftian</Filter>
     </ClCompile>
+    <ClCompile Include="Craftian\Skin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h">
@@ -83,11 +86,14 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Craftian\CraftCube.h">
       <Filter>Header Files\Craftian</Filter>
+    </ClInclude>
+    <ClInclude Include="Dim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Craftian\Skin.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

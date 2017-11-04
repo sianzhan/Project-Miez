@@ -1,11 +1,11 @@
 #pragma once
-#include <GLUT/glut.h>
 #include "CraftCube.h"
 class CraftHead : private CraftCube
 {
-	GLuint skinId;
+	Skin skin;
 public:
 	CraftHead() {};
-	CraftHead(GLuint skinId);
+	CraftHead(Skin);
 	void draw();
+	void setSkin(Skin);
 };

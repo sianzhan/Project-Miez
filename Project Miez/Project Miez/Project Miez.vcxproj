@@ -122,6 +122,7 @@
     <ClCompile Include="Craftian\CraftHand.cpp" />
     <ClCompile Include="Craftian\CraftHead.cpp" />
     <ClCompile Include="Craftian\Craftian.cpp" />
+    <ClCompile Include="Craftian\Skin.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -132,8 +133,9 @@
     <ClInclude Include="Craftian\CraftHand.h" />
     <ClInclude Include="Craftian\CraftHead.h" />
     <ClInclude Include="Craftian\Craftian.h" />
+    <ClInclude Include="Craftian\Skin.h" />
     <ClInclude Include="Display.h" />
-    <ClInclude Include="Point.h" />
+    <ClInclude Include="Dim.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

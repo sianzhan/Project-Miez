@@ -1,8 +1,9 @@
 #include "CraftCube.h"
-
+#include <stdexcept>
+#include <iterator>
 void CraftCube::draw()
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	glBindTexture(GL_TEXTURE_2D, texId);
 	glBegin(GL_QUADS);
 	double depthX, depthY, depthZ;
@@ -51,39 +52,61 @@ void CraftCube::draw()
 	glEnd();
 }
 
+void CraftCube::setSkin(Skin skin)
+{
+	this->setTex(skin.texId, skin.skinSize);
+}
+
+void CraftCube::setSkinPart(Skin::ID id)
+{
+	for (int i = 0; i < 6; ++i)
+	{
+		faces[i] = Skin::vexSkin[id][i];
+		faces[i].btmRight.y = texSize - faces[i].btmRight.y;
+		faces[i].topLeft.y = texSize - faces[i].topLeft.y;
+		faces[i] = faces[i] / texSize;
+	}
+}
+
+void CraftCube::drawSkinPart(Skin::ID id)
+{
+	setSkinPart(id);
+	draw();
+}
+
 void CraftCube::setTop(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[0] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
 void CraftCube::setBtm(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[1] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
 void CraftCube::setRight(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[2] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
 void CraftCube::setFront(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[3] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
 void CraftCube::setLeft(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[4] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
 void CraftCube::setBack(Point topLeft, Point btmRight, bool transparent)
 {
-	if (texSize <= 0) throw("Please set the texture size first");
+	if (texSize <= 0) throw std::runtime_error("Please set the texture size first");
 	topLeft.y = texSize - topLeft.y, btmRight.y = texSize - btmRight.y;
 	faces[5] = Face(topLeft / texSize, btmRight / texSize, transparent);
 }
