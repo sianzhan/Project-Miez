@@ -1,8 +1,7 @@
 #include "Display.h"
-#include "Craftian/Craftian.h"
-#include <GLUT/glut.h>
 
 const string Display::windowName = "Project Miez";
+Craftian Display::robot;
 int Display::windowWidth = 800;
 int Display::windowHeight = 600;
 
@@ -11,7 +10,6 @@ void Display::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glColor3f(0.5, 0.5, 0.5);
-	Craftian robot;
 	robot.draw();
 	glPopMatrix();
 	glutSwapBuffers();
@@ -62,11 +60,11 @@ void Display::timer(int)
 void Display::init(int argc, char *argv[])
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_MULTISAMPLE); //GLUT_MULTISAMPLE anti-aliasing
+	printf("TEST");
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //GLUT_MULTISAMPLE anti-aliasing
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow(windowName.c_str());
-	glShadeModel(GL_SMOOTH);
 
 	//enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -76,11 +74,14 @@ void Display::init(int argc, char *argv[])
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glClearDepth(1.0f);
 
+	glEnable(GL_TEXTURE_RECTANGLE_ARB);
 	glutDisplayFunc(draw);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keydown);
 	glutKeyboardUpFunc(keyup);
 	glutTimerFunc(16, timer, 0);
+
+	glewInit();
 }
 
 

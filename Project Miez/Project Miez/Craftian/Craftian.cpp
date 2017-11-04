@@ -1,8 +1,11 @@
 #include "Craftian.h"
-#include "CraftBody.h"
+
+Craftian::Craftian()
+{
+
+}
 
 void Craftian::draw()
 {
-	CraftBody body;
 	body.draw();
 }
