@@ -27,15 +27,6 @@
     <ClCompile Include="Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Craftian\CraftBody.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Craftian\CraftHand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Craftian\CraftHead.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Craftian\Craftian.cpp">
       <Filter>Source Files\Craftian</Filter>
     </ClCompile>
@@ -60,15 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftHead.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftBody.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftHand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Craftian\Craftian.h">

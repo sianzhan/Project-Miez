@@ -118,9 +118,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Craftian\CraftCube.cpp" />
-    <ClCompile Include="Craftian\CraftBody.cpp" />
-    <ClCompile Include="Craftian\CraftHand.cpp" />
-    <ClCompile Include="Craftian\CraftHead.cpp" />
     <ClCompile Include="Craftian\Craftian.cpp" />
     <ClCompile Include="Craftian\Skin.cpp" />
     <ClCompile Include="Display.cpp" />
@@ -129,9 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Craftian\CraftCube.h" />
-    <ClInclude Include="Craftian\CraftBody.h" />
-    <ClInclude Include="Craftian\CraftHand.h" />
-    <ClInclude Include="Craftian\CraftHead.h" />
     <ClInclude Include="Craftian\Craftian.h" />
     <ClInclude Include="Craftian\Skin.h" />
     <ClInclude Include="Display.h" />

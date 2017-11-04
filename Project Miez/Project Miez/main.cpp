@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "Texture.h"
 #include "Display.h"
-#include "Craftian/CraftBody.h"
 #include "stdio.h"
 int main(int argc, char *argv[])
 { 
