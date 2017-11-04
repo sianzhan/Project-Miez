@@ -1,14 +1,14 @@
 //Display encapsulation
 
 #pragma once
-#include <vgl.h>
+#include "Texture.h"
 #include "Craftian/Craftian.h"
 #include <string>
 using namespace std;
 class Display
 {
 private:
-	static Craftian robot;
+	static Craftian *robot;
 	const static std::string windowName;
 	static int windowWidth;
 	static int windowHeight;

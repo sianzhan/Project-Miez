@@ -141,6 +141,7 @@ GLuint Texture::GenTexture(char* filepath)
 			return 0;
 		}
 		glGenTextures(1, &textureID);
+		printf("%u zz\n", textureID);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -176,7 +177,6 @@ GLuint Texture::GenTexture(char* filepath)
 		}
 		else printf("cannot find %s \n", filepath);
 	}
-
 	return textureID;
 }
 

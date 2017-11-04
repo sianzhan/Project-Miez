@@ -1,10 +1,12 @@
 #pragma once
 #include <GLUT/glut.h>
-class CraftBody
+#include "CraftCube.h"
+class CraftBody : private CraftCube
 {
-	static GLuint skin_girl;
+	GLuint skinId;
 public:
-	CraftBody();
+	CraftBody() {};
+	CraftBody(GLuint);
 	void draw();
-	static void init();
+	void setSkinId(int);
 };

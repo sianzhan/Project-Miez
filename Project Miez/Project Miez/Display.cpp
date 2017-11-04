@@ -1,7 +1,7 @@
 #include "Display.h"
 
 const string Display::windowName = "Project Miez";
-Craftian Display::robot;
+Craftian *Display::robot = nullptr;
 int Display::windowWidth = 800;
 int Display::windowHeight = 600;
 
@@ -10,7 +10,7 @@ void Display::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glColor3f(0.5, 0.5, 0.5);
-	robot.draw();
+	robot->draw();
 	glPopMatrix();
 	glutSwapBuffers();
 }
@@ -82,6 +82,7 @@ void Display::init(int argc, char *argv[])
 	glutTimerFunc(16, timer, 0);
 
 	glewInit();
+	robot = new Craftian(Texture::GenTexture("res\\skin\\skin_girl.png"));
 }
 
 

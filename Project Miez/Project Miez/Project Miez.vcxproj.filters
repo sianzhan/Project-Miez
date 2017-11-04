@@ -51,6 +51,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Craftian\CraftCube.cpp">
+      <Filter>Source Files\Craftian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h">
@@ -79,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Craftian\CraftCube.h">
+      <Filter>Header Files\Craftian</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
