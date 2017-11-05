@@ -1,13 +1,8 @@
 #include "Craftian.h"
-#include "CraftCube.h"
-#include <GLUT/glut.h>
-Craftian::Craftian(GLuint texId, float size) :skin(texId, size){}
 
-CraftCube cube;
 float theta = 0;
 void Craftian::draw()
 {
-	cube.setSkin(skin);
 	glPushMatrix();
 		glScalef(0.5, 0.5, 0.5);
 		glRotatef(theta++, 0, 1, 0);
@@ -66,4 +61,11 @@ void Craftian::draw()
 		glPopMatrix();
 
 	glPopMatrix();
+
+}
+
+void Craftian::setSkin(GLuint texId, float size)
+{
+	skin = Skin(texId, size);
+	cube.setSkin(skin);
 }

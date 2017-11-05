@@ -1,5 +1,6 @@
 #include "Texture.h"
 
+#include <stdexcept>
 #include <libpng\png.h>
 bool Texture::LoadPngImage(char *name, int &outWidth, int &outHeight, bool &outHasAlpha, GLubyte **outData)
 {
@@ -140,7 +141,6 @@ GLuint Texture::GenTexture(char* filepath)
 			return 0;
 		}
 		glGenTextures(1, &textureID);
-		printf("%u zz\n", textureID);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -173,7 +173,11 @@ GLuint Texture::GenTexture(char* filepath)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, img->width, img->height, GL_BGR_EXT, GL_UNSIGNED_BYTE, img->imageData);
 		}
-		else printf("cannot find %s \n", filepath);
+		else
+		{
+			std::string msg = "failed to load texture " + std::string(filepath) + "\n";
+			throw std::runtime_error(msg);
+		}
 	}
 	return textureID;
 }

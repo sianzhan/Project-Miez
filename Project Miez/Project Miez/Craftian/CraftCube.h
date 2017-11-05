@@ -11,6 +11,7 @@ class CraftCube
 	GLuint texId = 0;
 	float texSize = 0;
 public:
+	CraftCube(GLuint texId, float texSize) :texId(texId), texSize(texSize) {}
 	void setSkin(Skin);
 	void setSkinPart(Skin::ID);
 	void drawSkinPart(Skin::ID);

@@ -1,15 +1,17 @@
 #include "Display.h"
+#include <fstream>
 
 const string Display::windowName = "Project Miez";
 Craftian *Display::robot = nullptr;
 int Display::windowWidth = 800;
 int Display::windowHeight = 600;
+int Display::iSkin = 0;
+std::vector<GLuint> Display::dbTex;
 
 void Display::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	glColor3f(0.5, 0.5, 0.5);
 	robot->draw();
 	glPopMatrix();
 	glutSwapBuffers();
@@ -43,7 +45,11 @@ void Display::reshape(int width, int height)
 
 void Display::keydown(unsigned char key, int, int)
 {
-	printf("key_down");
+	switch (key)
+	{
+	case'x': robot->setSkin((++iSkin) >= dbTex.size() ? dbTex[iSkin = dbTex.size()-1] : dbTex[iSkin], 64); break;
+	case'z': robot->setSkin((--iSkin) < 0 ? dbTex[iSkin = 0] : dbTex[iSkin], 64); break;
+	}
 }
 
 void Display::keyup(unsigned char key, int, int)
@@ -60,7 +66,6 @@ void Display::timer(int)
 void Display::init(int argc, char *argv[])
 {
 	glutInit(&argc, argv);
-	printf("TEST");
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //GLUT_MULTISAMPLE anti-aliasing
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(windowWidth, windowHeight);
@@ -84,7 +89,21 @@ void Display::init(int argc, char *argv[])
 	glutTimerFunc(16, timer, 0);
 
 	glewInit();
-	robot = new Craftian(Texture::GenTexture("res\\skin\\test.png"), 64);
+	for (int i = 0;; ++i)
+	{
+		std::string dir = "res\\skin\\";
+		dir += to_string(i) + ".png";
+		std::fstream fs(dir, std::fstream::in);
+		if (!fs) {
+			printf("%d\n", i); break;
+		}
+		char *buf = new char[dir.length() + 1];
+		std::strcpy(buf, dir.c_str());
+		dbTex.push_back(Texture::GenTexture(buf));
+		delete buf;
+	}
+	if (dbTex.empty()) throw std::runtime_error("No texture file available");
+	robot = new Craftian(dbTex[0], 64);
 }
 
 
