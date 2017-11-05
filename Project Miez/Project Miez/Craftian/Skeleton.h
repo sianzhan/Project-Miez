@@ -8,9 +8,10 @@ public:
 		STILL,
 		RUN,
 		BOW,
-		SIT
+		SIT,
+		PLACE_HEAD
 	};
-private:
+protected:
 	Joint joints[6];
 	Joint targets[6];
 	void resetJoint();

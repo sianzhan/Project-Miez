@@ -14,11 +14,17 @@ class Craftian : public Skeleton
 	float pitch = 0;
 	float yaw = 0;
 	float roll = 0;
+
+	int headCount = 0;
+	int targetHeadCount = 0;
+	void test(int i);
+
 public:
 	Craftian(GLuint texId, float size) :cube(texId, size), skin(texId,size) {}
 	void setSkin(GLuint texId, float size);
 	void draw();
-	
+	void headStack() { targetHeadCount++; }
+	void headPop() { targetHeadCount > 0 ? targetHeadCount-- : 0; }
 	void move(int x, int y);
 	void changeYaw(float yaw);
 	void changePitch(float pitch);

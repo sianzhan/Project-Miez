@@ -1,8 +1,65 @@
 #include "Craftian.h"
 #define PI 3.14159
+
+void Craftian::test(int i)
+{
+	static int step = 0;
+	bool flag = 0;
+	const static int maxStep = 3;
+	if(i < headCount || i < targetHeadCount)
+	{
+		if (i == headCount - 1 && i >= targetHeadCount)
+		{
+			if (step == 0) step = maxStep;
+			step--;
+			glScalef(1.0*step / maxStep, 1.0*step / maxStep, 1.0*step / maxStep);
+			if (step == 1) step = 0, headCount--;
+		}
+		else if (i >= headCount)
+		{
+			step++;
+			glScalef(1.0*step / maxStep, 1.0*step / maxStep, 1.0*step / maxStep);
+			if (step == maxStep) step = 0, headCount++;
+		}
+
+		else flag = 1;
+		glPushMatrix(); //Set the joint of arm to 17/20 of torso
+		glTranslatef(skin.lenX(Skin::HEAD), 0, 0);
+		//jointBegin(TORSO$R_ARM);
+		actJoint(TORSO$R_ARM);
+		//jointEnd();
+		glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+		cube.drawSkinPart(Skin::R_ARM);
+		glPopMatrix();
+
+		glPushMatrix(); //Set the joint of arm to 17/20 of torso
+		glTranslatef(-skin.lenX(Skin::HEAD), 0, 0);
+		//jointBegin(TORSO$L_ARM);
+		actJoint(TORSO$L_ARM);
+		//jointEnd();
+		glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+		cube.drawSkinPart(Skin::L_ARM);
+		glPopMatrix();
+
+		glRotatef(pitch, 1, 0, 0);
+		glRotatef(roll, 0, 1, 0);
+		glScalef(2.0, 2.0, 2.0);
+		glPushMatrix();
+		//jointBegin(TORSO$HEAD);
+		actJoint(TORSO$HEAD);
+		//jointEnd();
+		glTranslatef(0, skin.lenY(Skin::HEAD), 0);
+		cube.drawSkinPart(Skin::HEAD);
+		glScalef(1.1, 1.1, 1.1);
+		glPopMatrix();
+		glTranslatef(0, 2 * skin.lenY(Skin::HEAD), 0);
+		if(flag) test(i + 1);
+	}
+}
+
 void Craftian::draw()
 {
-	update();
+	Skeleton::update();
 	glPushMatrix();
 	    glTranslatef(pos.x/100, -0.4, pos.y/100);
 
@@ -55,8 +112,8 @@ void Craftian::draw()
 			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
 			cube.drawSkinPart(Skin::L_ARM);
 		glPopMatrix();
-
 		glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint to torso top
+
 		glRotatef(pitch, 1, 0, 0);
 		glRotatef(roll, 0, 1, 0);
 		glScalef(2.0, 2.0, 2.0);
@@ -71,38 +128,7 @@ void Craftian::draw()
 		glPopMatrix();
 		glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
 
-
-		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-			glTranslatef(skin.lenX(Skin::HEAD), 0, 0);
-			//jointBegin(TORSO$R_ARM);
-			actJoint(TORSO$R_ARM);
-			//jointEnd();
-			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
-			cube.drawSkinPart(Skin::R_ARM);
-		glPopMatrix();
-
-		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-			glTranslatef(-skin.lenX(Skin::HEAD),0, 0);
-			//jointBegin(TORSO$L_ARM);
-			actJoint(TORSO$L_ARM);
-			//jointEnd();
-			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
-			cube.drawSkinPart(Skin::L_ARM);
-		glPopMatrix();
-
-		glRotatef(pitch, 1, 0, 0);
-		glRotatef(roll, 0, 1, 0);
-		glScalef(2.0, 2.0, 2.0);
-		glPushMatrix();
-			//jointBegin(TORSO$HEAD);
-			actJoint(TORSO$HEAD);
-			//jointEnd();
-			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
-			cube.drawSkinPart(Skin::HEAD);
-			glScalef(1.1, 1.1, 1.1);
-			cube.drawSkinPart(Skin::HELM);
-		glPopMatrix();
-		glTranslatef(0, 2 * skin.lenY(Skin::HEAD), 0);
+		test(0);
 
 	glPopMatrix();
 
@@ -115,6 +141,7 @@ void Craftian::setSkin(GLuint texId, float size)
 	skin = Skin(texId, size);
 	cube.setSkin(skin);
 }
+
 
 
 void Craftian::move(int x, int y){

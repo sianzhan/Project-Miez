@@ -66,6 +66,13 @@ void App::keyDown(int key)
 	case'n':
 		robot->toggleAnimation(Skeleton::SIT);
 		break;
+	case'j':
+		robot->animate(Skeleton::PLACE_HEAD);
+		robot->headStack();
+		break;
+	case'k':
+		robot->headPop();
+		break;
 	case 'c':
 		if (!mouseLock)
 		{

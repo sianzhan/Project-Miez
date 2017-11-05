@@ -50,6 +50,29 @@ void Skeleton::update()
 	case SIT:
 		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, -90);
 		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, -90);
+		break;
+	case PLACE_HEAD:
+		if (tick < 5)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+		}
+		else if (tick < 10)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -80);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -80);
+			targets[TORSO$L_ARM].setAngle(Joint::Y_AXIS, 20);
+			targets[TORSO$R_ARM].setAngle(Joint::Y_AXIS, -20);
+		}
+		else if (tick < 15)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -120);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -120);
+		}
+		else
+		{
+			animate(STILL);
+		}
 	default:;
 	}
 
