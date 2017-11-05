@@ -20,6 +20,6 @@ public:
 	void setSkin(GLuint texId, float size);
 	void draw();
 	
-	void move(float x, float y);
+	void move(int x, int y);
 	void changeYaw(float yaw);
 };

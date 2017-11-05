@@ -48,7 +48,7 @@ void App::timer()
 	if (Input::isKeyPress('a')) moveX += 1;
 	if (Input::isKeyPress('s')) moveY -= 1;
 	if (Input::isKeyPress('d')) moveX -= 1;
-	if(moveX != 0 || moveY != 0) robot->move(moveX, moveY);
+	robot->move(moveX, moveY);
 	glutPostRedisplay();
 }
 

@@ -2,10 +2,12 @@
 #include "Joint.h"
 class Skeleton
 {
-	Joint joints[5];
+	Joint joints[6];
+	Joint targets[6];
 public:
 	enum JOINT
 	{
+		TORSO,
 		TORSO$HEAD,
 		TORSO$R_ARM,
 		TORSO$L_ARM,
@@ -13,4 +15,12 @@ public:
 		TORSO$L_LEG
 	};
 	void actJoint(JOINT);
+
+	enum ANI
+	{
+		STILL,
+		RUN
+	};
+	void animate(ANI);
+	void update();
 };

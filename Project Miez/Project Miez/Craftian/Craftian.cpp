@@ -1,18 +1,18 @@
 #include "Craftian.h"
 #define PI 3.14159
-float theta = 0;
 void Craftian::draw()
 {
 	glPushMatrix();
 	    glTranslatef(pos.x/100, 0, pos.y/100);
 		glRotatef(yaw, 0, 1, 0);
 		glScalef(0.5, 0.5, 0.5);
+		sku.actJoint(Skeleton::TORSO);
 		cube.drawSkinPart(Skin::TORSO);
 
 		glPushMatrix();
 			glTranslatef(0, skin.lenY(Skin::TORSO), 0);
 			//jointBegin(TORSO$HEAD);
-			glRotatef(10, 1, 0, 0);
+			sku.actJoint(Skeleton::TORSO$HEAD);
 			//jointEnd();
 			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
 			cube.drawSkinPart(Skin::HEAD);
@@ -24,8 +24,7 @@ void Craftian::draw()
 		glPushMatrix();
 			glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.5, 0);
 			//jointBegin(TORSO$R_ARM);
-			glRotatef(30, 0, 1, 0);
-			glRotatef(30, 0, 0, 1);
+			sku.actJoint(Skeleton::TORSO$R_ARM);
 			//jointEnd();
 			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.6, 0);
 			cube.drawSkinPart(Skin::R_ARM);
@@ -68,9 +67,19 @@ void Craftian::setSkin(GLuint texId, float size)
 	cube.setSkin(skin);
 }
 
-void Craftian::move(float x, float y){
-	pos.x += x * cos(yaw * PI / 180) + y * sin(yaw * PI / 180);
-	pos.y += y * cos(yaw * PI / 180) - x * sin(yaw * PI / 180);
+void Craftian::move(int x, int y){
+	if (x == 0 && y == 0)
+	{
+		sku.animate(Skeleton::STILL);
+		sku.update();
+	}
+	else
+	{
+		pos.x += x * cos(yaw * PI / 180) + y * sin(yaw * PI / 180);
+		pos.y += y * cos(yaw * PI / 180) - x * sin(yaw * PI / 180);
+		sku.animate(Skeleton::RUN);
+		sku.update();
+	}
 }
 
 void Craftian::changeYaw(float yaw)
