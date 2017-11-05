@@ -60,6 +60,7 @@ protected:
 	static void SKeyboardFunc(int key, int x, int y);
 	static void SKeyboardUpFunc(int key, int x, int y);
 	static void MotionFunc(int x, int y);
+	static void PassiveMotionFunc(int x, int y);
 	static void MouseFunc(int button, int state, int x, int y);
 public:
 	Input();
@@ -72,6 +73,7 @@ protected:
 	virtual	void keyUp(int key);
 	virtual	void keyPress(int key);
 	virtual void inputMouse(int button, int state, int x, int y);
+	virtual void moveMouse(int x, int y) {};
 
 public:
 	bool isKeyPress(int key) { return m_Keyboard[key]; }

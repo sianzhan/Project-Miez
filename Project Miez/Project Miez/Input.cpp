@@ -42,6 +42,11 @@ void Input::MotionFunc(int x, int y)
 	target_input->inputMouse(0, 0, x, y);
 }
 
+void Input::PassiveMotionFunc(int x, int y)
+{
+	target_input->moveMouse(x, y);
+}
+
 /////////////////////////////////////////////////////////////////////////
 
 void Input::init()
@@ -54,6 +59,7 @@ void Input::init()
 	glutSpecialUpFunc(SKeyboardUpFunc);
 	glutMouseFunc(MouseFunc);
 	glutMotionFunc(MotionFunc);
+	glutPassiveMotionFunc(PassiveMotionFunc);
 }
 
 void Input::Input_Keyboard(int key, bool status)

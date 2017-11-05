@@ -43,20 +43,48 @@ void App::draw()
 void App::timer()
 {
 	float moveX = 0, moveY = 0;
-	if (Input::isKeyPress('w')) moveY -= 1;
-	if (Input::isKeyPress('a')) moveX -= 1;
-	if (Input::isKeyPress('s')) moveY += 1;
-	if (Input::isKeyPress('d')) moveX += 1;
-	robot->move(moveX, moveY);
+	//Coordinate system with respect to Craftian
+	if (Input::isKeyPress('w')) moveY += 1;
+	if (Input::isKeyPress('a')) moveX += 1;
+	if (Input::isKeyPress('s')) moveY -= 1;
+	if (Input::isKeyPress('d')) moveX -= 1;
+	if(moveX != 0 || moveY != 0) robot->move(moveX, moveY);
 	glutPostRedisplay();
 }
 
-
+bool yawLock = 1;
 void App::keyDown(int key)
 {
 	switch (key)
 	{
 	case'x': robot->setSkin((++iSkin) >= dbTex.size() ? dbTex[iSkin = dbTex.size() - 1] : dbTex[iSkin], 64); break;
 	case'z': robot->setSkin((--iSkin) < 0 ? dbTex[iSkin = 0] : dbTex[iSkin], 64); break;
+	case 'c': 
+		if (!mouseLock)
+		{
+			mouseLock = 1, glutSetCursor(GLUT_CURSOR_NONE);
+			glutWarpPointer(Display::windowWidth / 2, Display::windowHeight / 2);
+			yawLock = 0;
+		}
+		else
+		{mouseLock = 0, yawLock = 1, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);}
+	}
+}
+float lastX, lastY;
+void App::moveMouse(int x, int y)
+{
+	if (mouseLock) {
+		if (!yawLock)
+		{
+			if (x - 50 < 0 || y - 50 < 0 || x + 50 > windowWidth || y + 50 > windowHeight)
+			{
+				yawLock = 1;
+				glutWarpPointer(Display::windowWidth / 2, Display::windowHeight / 2);
+			}
+			else robot->changeYaw(x - lastX);
+		}
+		else yawLock = 0;
+		lastX = x;
+		lastY = y;
 	}
 }

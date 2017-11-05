@@ -12,14 +12,14 @@ class Craftian
 	Skin skin;
 	Skeleton sku;
 	Point pos;
-	float lookAngle;
+	float pitch = 0;
+	float yaw = 0;
+	float roll = 0;
 public:
-	Craftian(GLuint texId, float size) :cube(texId, size), skin(texId,size), lookAngle(0) {}
+	Craftian(GLuint texId, float size) :cube(texId, size), skin(texId,size) {}
 	void setSkin(GLuint texId, float size);
 	void draw();
 	
-	void move(float x, float y) 
-	{ 
-		pos.x += x, pos.y += y; 
-	};
+	void move(float x, float y);
+	void changeYaw(float yaw);
 };

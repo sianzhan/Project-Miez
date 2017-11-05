@@ -5,8 +5,8 @@ void Craftian::draw()
 {
 	glPushMatrix();
 	    glTranslatef(pos.x/100, 0, pos.y/100);
+		glRotatef(yaw, 0, 1, 0);
 		glScalef(0.5, 0.5, 0.5);
-		glRotatef(lookAngle, 0, 1, 0);
 		cube.drawSkinPart(Skin::TORSO);
 
 		glPushMatrix();
@@ -67,3 +67,13 @@ void Craftian::setSkin(GLuint texId, float size)
 	skin = Skin(texId, size);
 	cube.setSkin(skin);
 }
+
+void Craftian::move(float x, float y){
+	pos.x += x * cos(yaw * PI / 180) + y * sin(yaw * PI / 180);
+	pos.y += y * cos(yaw * PI / 180) - x * sin(yaw * PI / 180);
+}
+
+void Craftian::changeYaw(float yaw)
+{
+	this->yaw = fmod(this->yaw + yaw, 360);
+};
