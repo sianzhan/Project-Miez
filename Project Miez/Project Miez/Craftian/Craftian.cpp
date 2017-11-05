@@ -38,20 +38,6 @@ void Craftian::draw()
 		glTranslatef(0, skin.lenY(Skin::TORSO), 0);
 		cube.drawSkinPart(Skin::TORSO);
 
-		glPushMatrix();
-			glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint of head to bottom
-			//jointBegin(TORSO$HEAD);
-			glRotatef(pitch, 1, 0, 0);
-			glRotatef(roll, 0, 1, 0);
-			actJoint(TORSO$HEAD);
-			glScalef(2.0, 2.0, 2.0);
-			//jointEnd();
-			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
-			cube.drawSkinPart(Skin::HEAD);
-			glScalef(1.1, 1.1, 1.1);
-			cube.drawSkinPart(Skin::HELM);
-		glPopMatrix();
-
 		glPushMatrix(); //Set the joint of arm to 17/20 of torso
 			glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
 			//jointBegin(TORSO$R_ARM);
@@ -70,7 +56,57 @@ void Craftian::draw()
 			cube.drawSkinPart(Skin::L_ARM);
 		glPopMatrix();
 
+		glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint to torso top
+		glRotatef(pitch, 1, 0, 0);
+		glRotatef(roll, 0, 1, 0);
+		glScalef(2.0, 2.0, 2.0);
+		glPushMatrix();
+			//jointBegin(TORSO$HEAD);
+			actJoint(TORSO$HEAD);
+			//jointEnd();
+			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
+			cube.drawSkinPart(Skin::HEAD);
+			glScalef(1.1, 1.1, 1.1);
+			//cube.drawSkinPart(Skin::HELM);
+		glPopMatrix();
+		glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
+
+
+		glPushMatrix(); //Set the joint of arm to 17/20 of torso
+			glTranslatef(skin.lenX(Skin::HEAD), 0, 0);
+			//jointBegin(TORSO$R_ARM);
+			actJoint(TORSO$R_ARM);
+			//jointEnd();
+			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+			cube.drawSkinPart(Skin::R_ARM);
+		glPopMatrix();
+
+		glPushMatrix(); //Set the joint of arm to 17/20 of torso
+			glTranslatef(-skin.lenX(Skin::HEAD),0, 0);
+			//jointBegin(TORSO$L_ARM);
+			actJoint(TORSO$L_ARM);
+			//jointEnd();
+			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+			cube.drawSkinPart(Skin::L_ARM);
+		glPopMatrix();
+
+		glRotatef(pitch, 1, 0, 0);
+		glRotatef(roll, 0, 1, 0);
+		glScalef(2.0, 2.0, 2.0);
+		glPushMatrix();
+			//jointBegin(TORSO$HEAD);
+			actJoint(TORSO$HEAD);
+			//jointEnd();
+			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
+			cube.drawSkinPart(Skin::HEAD);
+			glScalef(1.1, 1.1, 1.1);
+			cube.drawSkinPart(Skin::HELM);
+		glPopMatrix();
+		glTranslatef(0, 2 * skin.lenY(Skin::HEAD), 0);
+
 	glPopMatrix();
+
+
 
 }
 
