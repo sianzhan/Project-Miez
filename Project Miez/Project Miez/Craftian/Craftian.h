@@ -6,11 +6,10 @@
 #include "Joint.h"
 #include "Skeleton.h"
 #include "CraftCube.h"
-class Craftian
+class Craftian : public Skeleton
 {
 	CraftCube cube;
 	Skin skin;
-	Skeleton sku;
 	Point pos;
 	float pitch = 0;
 	float yaw = 0;
@@ -22,4 +21,5 @@ public:
 	
 	void move(int x, int y);
 	void changeYaw(float yaw);
+	void changePitch(float pitch);
 };

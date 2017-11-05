@@ -25,13 +25,17 @@ public:
 		Y_AXIS = 1,
 		Z_AXIS = 2
 	};
+	void setRotate(int i, float a, float x, float y, float z) { 
+		rot[i].angle = a, rot[i].x = x, rot[i].y = y, rot[i].z = z; 
+	}
+
 	void setAngle(int a, float f) { rot[a].angle = f; }
 	void setX(int a, float f) { rot[a].x = f; }
 	void setY(int a, float f) { rot[a].y = f; }
 	void setZ(int a, float f) { rot[a].z = f; }
 
-	float getAngle(int a) { return rot[a].angle; }
-	float getX(int a) { return rot[a].x; }
-	float getY(int a) { return rot[a].y; }
-	float getZ(int a) { return rot[a].z; }
+	const float& getAngle(int a) const{ return rot[a].angle; }
+	const float& getX(int a) const{ return rot[a].x; }
+	const float& getY(int a) const{ return rot[a].y; }
+	const float& getZ(int a) const{ return rot[a].z; }
 };

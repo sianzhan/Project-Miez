@@ -53,24 +53,38 @@ void App::timer()
 }
 
 bool yawLock = 1;
+float lastX, lastY;
 void App::keyDown(int key)
 {
 	switch (key)
 	{
 	case'x': robot->setSkin((++iSkin) >= dbTex.size() ? dbTex[iSkin = dbTex.size() - 1] : dbTex[iSkin], 64); break;
 	case'z': robot->setSkin((--iSkin) < 0 ? dbTex[iSkin = 0] : dbTex[iSkin], 64); break;
-	case 'c': 
+	case'b': 
+		robot->toggleAnimation(Skeleton::BOW);
+		break;
+	case'n':
+		robot->toggleAnimation(Skeleton::SIT);
+		break;
+	case 'c':
 		if (!mouseLock)
 		{
-			mouseLock = 1, glutSetCursor(GLUT_CURSOR_NONE);
+			mouseLock = 1, yawLock = 1, glutSetCursor(GLUT_CURSOR_NONE);
 			glutWarpPointer(Display::windowWidth / 2, Display::windowHeight / 2);
+			lastX = Display::windowWidth / 2, lastY = Display::windowHeight / 2;
 			yawLock = 0;
 		}
 		else
-		{mouseLock = 0, yawLock = 1, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);}
+		{
+			mouseLock = 0, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		}
+		break;
+	case KEY_ESC:
+		if (mouseLock) mouseLock = 0, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		else glutLeaveMainLoop();
+		break;
 	}
 }
-float lastX, lastY;
 void App::moveMouse(int x, int y)
 {
 	if (mouseLock) {
@@ -81,7 +95,11 @@ void App::moveMouse(int x, int y)
 				yawLock = 1;
 				glutWarpPointer(Display::windowWidth / 2, Display::windowHeight / 2);
 			}
-			else robot->changeYaw(x - lastX);
+			else
+			{
+				robot->changeYaw(x - lastX);
+				robot->changePitch(y - lastY);
+			}
 		}
 		else yawLock = 0;
 		lastX = x;

@@ -1,38 +1,59 @@
 #include "Skeleton.h"
 #define PI 3.14159
+
 void Skeleton::actJoint(JOINT joint)
 {
 	joints[joint].act();
 }
 
+void Skeleton::resetJoint()
+{
+	for (int i = 0; i < 6; ++i) targets[i] = Joint();
+}
+
+void Skeleton::toggleAnimation(ANI ani)
+{
+	if (getAnimation() == ani) animate(STILL);
+	else animate(ani);
+}
+
 void Skeleton::animate(ANI ani)
 {
-	static float theta = 0;
-	switch (ani)
+	if (this->ani != ani)
 	{
-	case STILL:
-		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 0);
-		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
-		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, 0);
-		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, 0);
-		break;
-	case RUN:
-		theta += 0.5;
-		targets[TORSO].setAngle(Joint::X_AXIS, rand()%10 - 5);
-		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(theta) * 80);
-		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(theta) * 80);
-		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(theta) * 60);
-		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, cos(theta) * 60);
-		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, sin(theta) * (rand()%40));
-		targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, cos(theta) * (rand()%40));
-		break;
-
-	default:;
+		resetJoint();
+		this->ani = ani;
+		tick = 0;
 	}
 }
 
 void Skeleton::update()
 {
+	tick++;
+	switch (ani)
+	{
+	case STILL:
+		resetJoint();
+		break;
+	case RUN:
+		targets[TORSO].setAngle(Joint::X_AXIS, rand() % 10 - 5);
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(tick / 3.0) * 80);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(tick / 3.0) * 80);
+		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(tick / 3.0) * 60);
+		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, cos(tick / 3.0) * 60);
+		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, sin(tick / 3.0) * (rand() % 40));
+		targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, cos(tick / 3.0) * (rand() % 40));
+		break;
+	case BOW:
+		targets[TORSO].setAngle(Joint::X_AXIS, 80);
+		break;
+	case SIT:
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, -90);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, -90);
+	default:;
+	}
+
+
 	for (int i = 0; i < 6; ++i)
 	{
 		for (int j = 0; j < 3; ++j)
