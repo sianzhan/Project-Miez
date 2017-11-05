@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "Texture.h"
-#include "Display.h"
+#include "App.h"
 #include "stdio.h"
 int main(int argc, char *argv[])
 { 
 	printf("Hey, starts working NOW!\n"); 
-	Display::init(argc, argv);
-	Display::main_loop();
+	App app;
+	app.init();
+	app.start();
 	return 0;
 }

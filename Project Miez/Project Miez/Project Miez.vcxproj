@@ -117,18 +117,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Craftian\CraftCube.cpp" />
     <ClCompile Include="Craftian\Craftian.cpp" />
     <ClCompile Include="Craftian\Joint.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Craftian\Skeleton.cpp" />
     <ClCompile Include="Craftian\Skin.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
     <ClInclude Include="Craftian\CraftCube.h" />
     <ClInclude Include="Craftian\Craftian.h" />
     <ClInclude Include="Craftian\Joint.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Craftian\Skeleton.h" />
     <ClInclude Include="Craftian\Skin.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Dim.h" />

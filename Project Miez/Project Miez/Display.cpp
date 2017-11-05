@@ -1,23 +1,12 @@
 #include "Display.h"
-#include <fstream>
-
+#include <vgl.h>
+Display * Display::target_display = nullptr;
 const string Display::windowName = "Project Miez";
-Craftian *Display::robot = nullptr;
 int Display::windowWidth = 800;
 int Display::windowHeight = 600;
-int Display::iSkin = 0;
-std::vector<GLuint> Display::dbTex;
 
-void Display::draw()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPushMatrix();
-	robot->draw();
-	glPopMatrix();
-	glutSwapBuffers();
-}
 
-void Display::reshape(int width, int height)
+void Display::reshapeFunc(int width, int height)
 {
 	windowWidth = width;
 	windowHeight = height;
@@ -43,29 +32,24 @@ void Display::reshape(int width, int height)
 		0.0f, 1.0f, 0.0f);//up direction
 }
 
-void Display::keydown(unsigned char key, int, int)
+
+void Display::timerFunc(int)
 {
-	switch (key)
-	{
-	case'x': robot->setSkin((++iSkin) >= dbTex.size() ? dbTex[iSkin = dbTex.size()-1] : dbTex[iSkin], 64); break;
-	case'z': robot->setSkin((--iSkin) < 0 ? dbTex[iSkin = 0] : dbTex[iSkin], 64); break;
-	}
+	target_display->timer();
+	glutTimerFunc(16, timerFunc, 0);
 }
 
-void Display::keyup(unsigned char key, int, int)
+void Display::displayFunc()
 {
-
+	target_display->draw();
 }
 
-void Display::timer(int)
+void Display::init()
 {
-	glutPostRedisplay();
-	glutTimerFunc(16, timer, 0);
-}
-
-void Display::init(int argc, char *argv[])
-{
-	glutInit(&argc, argv);
+	target_display = this;
+	int one = 1;
+	char * name = "name";
+	glutInit(&one, &name);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //GLUT_MULTISAMPLE anti-aliasing
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(windowWidth, windowHeight);
@@ -82,32 +66,9 @@ void Display::init(int argc, char *argv[])
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND); //For Transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glutDisplayFunc(draw);
-	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keydown);
-	glutKeyboardUpFunc(keyup);
-	glutTimerFunc(16, timer, 0);
+	glutDisplayFunc(displayFunc);
+	glutReshapeFunc(reshapeFunc);
+	glutTimerFunc(16, timerFunc, 0);
 
 	glewInit();
-	for (int i = 0;; ++i)
-	{
-		std::string dir = "res\\skin\\";
-		dir += to_string(i) + ".png";
-		std::fstream fs(dir, std::fstream::in);
-		if (!fs) {
-			printf("%d\n", i); break;
-		}
-		char *buf = new char[dir.length() + 1];
-		std::strcpy(buf, dir.c_str());
-		dbTex.push_back(Texture::GenTexture(buf));
-		delete buf;
-	}
-	if (dbTex.empty()) throw std::runtime_error("No texture file available");
-	robot = new Craftian(dbTex[0], 64);
-}
-
-
-void Display::main_loop()
-{
-	glutMainLoop();
 }

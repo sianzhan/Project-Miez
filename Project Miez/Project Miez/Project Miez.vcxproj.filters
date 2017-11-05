@@ -30,15 +30,6 @@
     <ClCompile Include="Craftian\Craftian.cpp">
       <Filter>Source Files\Craftian</Filter>
     </ClCompile>
-    <ClCompile Include="Craftian\CraftHead.cpp">
-      <Filter>Source Files\Craftian</Filter>
-    </ClCompile>
-    <ClCompile Include="Craftian\CraftBody.cpp">
-      <Filter>Source Files\Craftian</Filter>
-    </ClCompile>
-    <ClCompile Include="Craftian\CraftHand.cpp">
-      <Filter>Source Files\Craftian</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,21 +42,21 @@
     <ClCompile Include="Craftian\Joint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Craftian\Skeleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Craftian\Craftian.h">
-      <Filter>Header Files\Craftian</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftBody.h">
-      <Filter>Header Files\Craftian</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftHand.h">
-      <Filter>Header Files\Craftian</Filter>
-    </ClInclude>
-    <ClInclude Include="Craftian\CraftHead.h">
       <Filter>Header Files\Craftian</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
@@ -81,6 +72,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Craftian\Joint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Craftian\Skeleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

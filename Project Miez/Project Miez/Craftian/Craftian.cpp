@@ -1,18 +1,17 @@
 #include "Craftian.h"
-
+#define PI 3.14159
 float theta = 0;
 void Craftian::draw()
 {
 	glPushMatrix();
+	    glTranslatef(pos.x/100, 0, pos.y/100);
 		glScalef(0.5, 0.5, 0.5);
-		glRotatef(theta++, 0, 1, 0);
-
-		glTranslatef(0, 0, 0);
+		glRotatef(lookAngle, 0, 1, 0);
 		cube.drawSkinPart(Skin::TORSO);
 
 		glPushMatrix();
 			glTranslatef(0, skin.lenY(Skin::TORSO), 0);
-			//jointBegin(TORSO^HEAD);
+			//jointBegin(TORSO$HEAD);
 			glRotatef(10, 1, 0, 0);
 			//jointEnd();
 			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
@@ -24,7 +23,7 @@ void Craftian::draw()
 
 		glPushMatrix();
 			glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.5, 0);
-			//jointBegin(TORSO^R_ARM);
+			//jointBegin(TORSO$R_ARM);
 			glRotatef(30, 0, 1, 0);
 			glRotatef(30, 0, 0, 1);
 			//jointEnd();
@@ -34,27 +33,26 @@ void Craftian::draw()
 
 		glPushMatrix();
 			glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.5, 0);
-			//jointBegin(TORSO^L_ARM);
-			glRotatef(-30, 0, 1, 0);
-			glRotatef(-30, 0, 0, 1);
+			//jointBegin(TORSO$L_ARM);
+				sku.actJoint(Skeleton::TORSO$L_ARM);
 			//jointEnd();
 			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.6, 0);
 			cube.drawSkinPart(Skin::L_ARM);
 		glPopMatrix();
 
 		glPushMatrix();
-			glTranslatef(-skin.lenX(Skin::R_LEG), -skin.lenY(Skin::TORSO), 0);
-			//jointBegin(TORSO^R_LEG);
-			glRotatef(-10, 1, 0, 0);
+			glTranslatef(skin.lenX(Skin::R_LEG), -skin.lenY(Skin::TORSO), 0);
+			//jointBegin(TORSO$R_LEG);
+			sku.actJoint(Skeleton::TORSO$R_LEG);
 			//jointEnd();
 			glTranslatef(0, -skin.lenY(Skin::R_LEG), 0);
 			cube.drawSkinPart(Skin::R_LEG);
 		glPopMatrix();
 
 		glPushMatrix();
-			glTranslatef(skin.lenX(Skin::L_LEG), -skin.lenY(Skin::TORSO), 0);
-			//jointBegin(TORSO^L_LEG);
-			glRotatef(10, 1, 0, 0);
+			glTranslatef(-skin.lenX(Skin::L_LEG), -skin.lenY(Skin::TORSO), 0);
+			//jointBegin(TORSO$L_LEG);
+			sku.actJoint(Skeleton::TORSO$L_LEG);
 			//jointEnd();
 			glTranslatef(0, -skin.lenY(Skin::L_LEG), 0);
 			cube.drawSkinPart(Skin::L_LEG);
