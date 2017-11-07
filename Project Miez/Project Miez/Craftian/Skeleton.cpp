@@ -21,7 +21,6 @@ void Skeleton::animate(ANI ani)
 {
 	if (this->ani != ani)
 	{
-		resetJoint();
 		this->ani = ani;
 		tick = 0;
 	}
@@ -37,12 +36,12 @@ void Skeleton::update()
 		break;
 	case RUN:
 		targets[TORSO].setAngle(Joint::X_AXIS, rand() % 10 - 5);
-		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(tick / 3.0) * 80);
-		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(tick / 3.0) * 80);
-		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(tick / 3.0) * 60);
-		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, cos(tick / 3.0) * 60);
-		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, sin(tick / 3.0) * (rand() % 40));
-		targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, cos(tick / 3.0) * (rand() % 40));
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(tick / 4.0) * 80);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(tick / 4.0+PI/2) * 80);
+		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(tick / 4.0+PI/4) * 60);
+		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, cos(tick / 4.0+PI/3) * 60);
+		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, sin(tick / 4.0) * (rand() % 40));
+		targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) * (rand() % 40));
 		break;
 	case BOW:
 		targets[TORSO].setAngle(Joint::X_AXIS, 80);
@@ -64,14 +63,16 @@ void Skeleton::update()
 			targets[TORSO$L_ARM].setAngle(Joint::Y_AXIS, 20);
 			targets[TORSO$R_ARM].setAngle(Joint::Y_AXIS, -20);
 		}
-		else if (tick < 15)
+		else if (tick < 20)
 		{
 			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -120);
 			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -120);
 		}
 		else
 		{
-			animate(STILL);
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
+			animate(NONE);
 		}
 	default:;
 	}

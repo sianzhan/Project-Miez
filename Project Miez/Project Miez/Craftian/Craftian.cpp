@@ -51,6 +51,7 @@ void Craftian::test(int i)
 		glTranslatef(0, skin.lenY(Skin::HEAD), 0);
 		cube.drawSkinPart(Skin::HEAD);
 		glScalef(1.1, 1.1, 1.1);
+		if(i == targetHeadCount-1) cube.drawSkinPart(Skin::HELM);
 		glPopMatrix();
 		glTranslatef(0, 2 * skin.lenY(Skin::HEAD), 0);
 		if(flag) test(i + 1);
@@ -61,7 +62,7 @@ void Craftian::draw()
 {
 	Skeleton::update();
 	glPushMatrix();
-	    glTranslatef(pos.x/100, -0.4, pos.y/100);
+	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
 
 		glRotatef(yaw, 0, 1, 0); //Set Yaw
 		glScalef(0.45, 0.45, 0.45); 
@@ -116,7 +117,7 @@ void Craftian::draw()
 
 		glRotatef(pitch, 1, 0, 0);
 		glRotatef(roll, 0, 1, 0);
-		glScalef(2.0, 2.0, 2.0);
+		glScalef(1.5, 1.5, 1.5);
 		glPushMatrix();
 			//jointBegin(TORSO$HEAD);
 			actJoint(TORSO$HEAD);
@@ -124,7 +125,7 @@ void Craftian::draw()
 			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
 			cube.drawSkinPart(Skin::HEAD);
 			glScalef(1.1, 1.1, 1.1);
-			//cube.drawSkinPart(Skin::HELM);
+			if(targetHeadCount == 0)cube.drawSkinPart(Skin::HELM);
 		glPopMatrix();
 		glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
 
@@ -145,12 +146,16 @@ void Craftian::setSkin(GLuint texId, float size)
 
 
 void Craftian::move(int x, int y){
-	if (x == 0 && y == 0)
+	if (x == 0 && y == 0 && height == 0)
 	{
 		if(ani == RUN) animate(STILL);
 	}
 	else
 	{
+		if (targetHeight > 0) targetHeight -= 0.1;
+		if(height<targetHeight) height += targetHeight/10;
+		else if (targetHeight < 0) targetHeight = 0, height = 0;
+		else height = targetHeight;
 		pos.x += x * cos(yaw * PI / 180) + y * sin(yaw * PI / 180);
 		pos.y += y * cos(yaw * PI / 180) - x * sin(yaw * PI / 180);
 
@@ -159,6 +164,11 @@ void Craftian::move(int x, int y){
 
 		animate(RUN);
 	}
+}
+
+void Craftian::jump()
+{
+	targetHeight = 1;
 }
 
 void Craftian::changeYaw(float yaw)

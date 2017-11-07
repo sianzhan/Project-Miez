@@ -86,6 +86,10 @@ void App::keyDown(int key)
 			mouseLock = 0, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 		}
 		break;
+	case KEY_SPACE:
+		robot->jump();
+		break;
+
 	case KEY_ESC:
 		if (mouseLock) mouseLock = 0, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 		else glutLeaveMainLoop();

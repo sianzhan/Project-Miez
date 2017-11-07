@@ -9,7 +9,8 @@ public:
 		RUN,
 		BOW,
 		SIT,
-		PLACE_HEAD
+		PLACE_HEAD,
+		NONE
 	};
 protected:
 	Joint joints[6];

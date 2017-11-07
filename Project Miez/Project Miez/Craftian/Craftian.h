@@ -11,10 +11,11 @@ class Craftian : public Skeleton
 	CraftCube cube;
 	Skin skin;
 	Point pos;
+	float height = 0;
+	float targetHeight = 0;
 	float pitch = 0;
 	float yaw = 0;
 	float roll = 0;
-
 	int headCount = 0;
 	int targetHeadCount = 0;
 	void test(int i);
@@ -26,6 +27,7 @@ public:
 	void headStack() { targetHeadCount++; }
 	void headPop() { targetHeadCount > 0 ? targetHeadCount-- : 0; }
 	void move(int x, int y);
+	void jump();
 	void changeYaw(float yaw);
 	void changePitch(float pitch);
 };
