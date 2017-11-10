@@ -74,6 +74,30 @@ void Skeleton::update()
 			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
 			animate(NONE);
 		}
+	case HELLO:
+		if (tick < 10) {
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 20);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 150);
+		}
+		else if (tick < 20) {
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 110);
+		}
+		else if (tick < 30) {
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 20);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 150);
+		}
+		else if (tick < 40) {
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 110);
+		}
+		else {
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 0);
+			animate(NONE);
+		}
+
+		
 	default:;
 	}
 

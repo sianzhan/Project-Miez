@@ -10,7 +10,8 @@ public:
 		BOW,
 		SIT,
 		PLACE_HEAD,
-		NONE
+		NONE,
+		HELLO,
 	};
 protected:
 	Joint joints[6];

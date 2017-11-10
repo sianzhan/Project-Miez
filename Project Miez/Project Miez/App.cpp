@@ -94,6 +94,9 @@ void App::keyDown(int key)
 		if (mouseLock) mouseLock = 0, glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 		else glutLeaveMainLoop();
 		break;
+	case '1':
+		robot->toggleAnimation(Skeleton::HELLO);
+		break;
 	}
 }
 void App::moveMouse(int x, int y)

@@ -187,3 +187,4 @@ void Craftian::changePitch(float pitch)
 	if (this->pitch > maxPitch) this->pitch = maxPitch;
 	else if (this->pitch < -maxPitch) this->pitch = -maxPitch;
 };
+
