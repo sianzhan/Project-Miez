@@ -12,6 +12,8 @@ public:
 		PLACE_HEAD,
 		NONE,
 		HELLO,
+		DANCE,
+		GANGNAM,
 	};
 protected:
 	Joint joints[6];

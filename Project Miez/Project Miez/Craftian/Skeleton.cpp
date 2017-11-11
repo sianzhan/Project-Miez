@@ -74,10 +74,20 @@ void Skeleton::update()
 			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
 			animate(NONE);
 		}
+		break;
 	case HELLO:
 		if (tick < 10) {
 			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 20);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 0);
 			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 150);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, -0);
+
 		}
 		else if (tick < 20) {
 			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 0);
@@ -96,7 +106,175 @@ void Skeleton::update()
 			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 0);
 			animate(NONE);
 		}
+		break;
+	case DANCE:	
+			if (tick%80 < 20) {
+				targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 20);
+				targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 80);
+				targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -20);
+				targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 80);
+				targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 10);
+				targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 10);
+				targets[TORSO].setAngle(Joint::Z_AXIS, -20);
+				targets[TORSO].setAngle(Joint::X_AXIS, 0);
+				targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 20);
+				targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+			}
+			else if (tick % 80  < 40) {
+				targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -20);
+				targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, -80);
+				targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 20);
+				targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -80);
+				targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -10);
+				targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, -10);
+				targets[TORSO].setAngle(Joint::Z_AXIS, 20);
+				targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, -20);
+			}
+			else if (tick % 80  < 60) {
+				targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -20);
+				targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 80);
+				targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 20);
+				targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 80);
+				targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 10);
+				targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 10);
+				targets[TORSO].setAngle(Joint::Z_AXIS, -20);
+				targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 20);
 
+			}
+			else if (tick % 80  < 80) {
+				targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 20);
+				targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, -80);
+				targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -20);
+				targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -80);
+				targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -10);
+				targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, -10);
+				targets[TORSO].setAngle(Joint::Z_AXIS, 20);
+				targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, -20);
+			}
+			break;
+	case GANGNAM:
+		if (tick % 240 < 20) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180+sin(tick / 4.0 ) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0 ) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -80);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -40);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 10);
+			targets[TORSO$HEAD].setAngle(Joint::Z_AXIS, 0);
+		}
+		else if (tick % 240 < 40) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180 + sin(tick / 4.0) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
+		else if (tick % 240 < 60) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180 + sin(tick / 4.0) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 40);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 10);
+		}
+		else if (tick % 240 < 80) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180 + sin(tick / 4.0) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
+		else if (tick % 240 < 100) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180 + sin(tick / 4.0) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -40);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, -10);
+		}
+		else if (tick % 240 < 120) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -180 + sin(tick / 4.0) *-25);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, cos(tick / 4.0) *-25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
+		else if (tick % 240 < 140) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -40);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 10);
+		}
+		else if (tick % 240 < 160) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
+		else if (tick % 240 < 180) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 40);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 10);
+		}
+		else if (tick % 240 < 200) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
+		else if (tick % 240 < 220) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -70);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, -40);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, -10);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, -10);
+		}
+		else if (tick % 240 < 240) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 25);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -40);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -25);
+			targets[TORSO$L_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_LEG].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
+		}
 		
 	default:;
 	}
