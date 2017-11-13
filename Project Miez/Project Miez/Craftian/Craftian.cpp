@@ -25,34 +25,34 @@ void Craftian::test(int i)
 
 		else flag = 1;
 		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-		glTranslatef(skin.lenX(Skin::HEAD), 0, 0);
-		//jointBegin(TORSO$R_ARM);
-		actJoint(TORSO$R_ARM);
-		//jointEnd();
-		glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
-		cube.drawSkinPart(Skin::R_ARM);
+			glTranslatef(skin.lenX(Skin::HEAD), 0, 0);
+			//jointBegin(TORSO$R_ARM);
+			actJoint(TORSO$R_ARM);
+			//jointEnd();
+			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+			cube.drawSkinPart(Skin::R_ARM);
 		glPopMatrix();
 
 		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-		glTranslatef(-skin.lenX(Skin::HEAD), 0, 0);
-		//jointBegin(TORSO$L_ARM);
-		actJoint(TORSO$L_ARM);
-		//jointEnd();
-		glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
-		cube.drawSkinPart(Skin::L_ARM);
+			glTranslatef(-skin.lenX(Skin::HEAD), 0, 0);
+			//jointBegin(TORSO$L_ARM);
+			actJoint(TORSO$L_ARM);
+			//jointEnd();
+			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::HEAD)*0.8, 0);
+			cube.drawSkinPart(Skin::L_ARM);
 		glPopMatrix();
 
 		glRotatef(pitch, 1, 0, 0);
 		glRotatef(roll, 0, 1, 0);
 		glScalef(2.0, 2.0, 2.0);
 		glPushMatrix();
-		//jointBegin(TORSO$HEAD);
-		actJoint(TORSO$HEAD);
-		//jointEnd();
-		glTranslatef(0, skin.lenY(Skin::HEAD), 0);
-		cube.drawSkinPart(Skin::HEAD);
-		glScalef(1.1, 1.1, 1.1);
-		if(i == targetHeadCount-1) cube.drawSkinPart(Skin::HELM);
+			//jointBegin(TORSO$HEAD);
+			actJoint(TORSO$HEAD);
+			//jointEnd();
+			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
+			cube.drawSkinPart(Skin::HEAD);
+			glScalef(1.1, 1.1, 1.1);
+			if(i == targetHeadCount-1) cube.drawSkinPart(Skin::HELM);
 		glPopMatrix();
 		glTranslatef(0, 2 * skin.lenY(Skin::HEAD), 0);
 		if(flag) test(i + 1);
@@ -86,12 +86,12 @@ void Craftian::draw()
 		glPopMatrix();
 
 		glPushMatrix();
-		glTranslatef(-skin.lenX(Skin::L_LEG), 0, 0); //Set the joint of leg to top
-		//jointBegin(TORSO$L_LEG);
-		actJoint(TORSO$L_LEG);
-		//jointEnd();
-		glTranslatef(0, -skin.lenY(Skin::L_LEG), 0);
-		cube.drawSkinPart(Skin::L_LEG);
+			glTranslatef(-skin.lenX(Skin::L_LEG), 0, 0); //Set the joint of leg to top
+			//jointBegin(TORSO$L_LEG);
+			actJoint(TORSO$L_LEG);
+			//jointEnd();
+			glTranslatef(0, -skin.lenY(Skin::L_LEG), 0);
+			cube.drawSkinPart(Skin::L_LEG);
 		glPopMatrix();
 
 		//jointBegin(TORSO);
@@ -99,57 +99,67 @@ void Craftian::draw()
 		//jointEnd(TORSO);
 		glTranslatef(0, skin.lenY(Skin::TORSO), 0);
 		cube.drawSkinPart(Skin::TORSO);
-
-		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-			glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
-			//jointBegin(TORSO$R_ARM);
-			actJoint(TORSO$R_ARM);
-			//jointEnd();
-			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
-			
-			cube.drawSkinPart(Skin::R_ARM);
-			glDepthMask(GL_FALSE);
-			Item item;
-			glPushMatrix();
-			glTranslatef(0,-0.13,0);
-			glRotatef(-90,0,1,0);
-			glRotatef(-45,0,0,1);
-			item.draw();
-			glPopMatrix();
-			glDepthMask(GL_TRUE);
-		glPopMatrix();
-
-		glPushMatrix(); //Set the joint of arm to 17/20 of torso
-			glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
-			//jointBegin(TORSO$L_ARM);
-			actJoint(TORSO$L_ARM);
-			//jointEnd();
-			glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
-			cube.drawSkinPart(Skin::L_ARM);
-		glPopMatrix();
-		glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint to torso top
-
-		glRotatef(pitch, 1, 0, 0);
-		glRotatef(roll, 0, 1, 0);
-		glScalef(1.5, 1.5, 1.5);
 		glPushMatrix();
-			//jointBegin(TORSO$HEAD);
-			actJoint(TORSO$HEAD);
-			//jointEnd();
-			glTranslatef(0, skin.lenY(Skin::HEAD), 0);
-			cube.drawSkinPart(Skin::HEAD);
-			glScalef(1.1, 1.1, 1.1);
-			if(targetHeadCount == 0)cube.drawSkinPart(Skin::HELM);
+			glPushMatrix(); //Set the joint of arm to 17/20 of torso
+				glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				//jointBegin(TORSO$R_ARM);
+				actJoint(TORSO$R_ARM);
+				//jointEnd();
+				glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+			
+				cube.drawSkinPart(Skin::R_ARM);
+			glPopMatrix();
+
+			glPushMatrix(); //Set the joint of arm to 17/20 of torso
+				glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				//jointBegin(TORSO$L_ARM);
+				actJoint(TORSO$L_ARM);
+				//jointEnd();
+				glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+				cube.drawSkinPart(Skin::L_ARM);
+			glPopMatrix();
+			glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint to torso top
+
+			glRotatef(pitch, 1, 0, 0);
+			glRotatef(roll, 0, 1, 0);
+			glScalef(1.5, 1.5, 1.5);
+			glPushMatrix();
+				//jointBegin(TORSO$HEAD);
+				actJoint(TORSO$HEAD);
+				//jointEnd();
+				glTranslatef(0, skin.lenY(Skin::HEAD), 0);
+				cube.drawSkinPart(Skin::HEAD);
+				glScalef(1.1, 1.1, 1.1);
+				if(targetHeadCount == 0)cube.drawSkinPart(Skin::HELM);
+			glPopMatrix();
+			glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
+
+			test(0);
+
 		glPopMatrix();
-		glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
 
-		test(0);
+		//FOr drawing equipments on hand
+		glPushMatrix();
+			//Left Hand
+			glPushMatrix(); //Set the joint of arm to 17/20 of torso
+				glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				//jointBegin(TORSO$R_ARM);
+				actJoint(TORSO$R_ARM);
+				//jointEnd();
+				glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+				Item item;
+				glTranslatef(0, -0.1, -0.05);
+				glRotatef(-90, 0, 1, 0);
+				glRotatef(-45, 0, 0, 1);
+				item.draw();
+			glPopMatrix();
 
+			//Right Hand
+			glPushMatrix(); //Set the joint of arm to 17/20 of torso
+			glPopMatrix();
 		glPopMatrix();
 
 	glPopMatrix();
-
-
 
 }
 
