@@ -65,7 +65,7 @@ void Craftian::drawEffect()
 	static std::vector<paramRotate> balls;
 	glPushMatrix();
 
-	if (id_effect > 0 && id_effect < 50)
+	if (id_effect > 0)
 	{
 		while (balls.size() < id_effect) {
 			balls.push_back(paramRotate(rand()%360, ((rand() % 134)-67) / 67.0, (rand() % 250 - 125) / 125.0, (rand() % 34 - 17) / 17.0));
@@ -85,11 +85,10 @@ void Craftian::drawEffect()
 
 void Craftian::draw()
 {
-	Craftian::update();
-	Skeleton::update();
 	glPushMatrix();
-	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
+	    glTranslatef(pos.x/100, 0, pos.y/100);
 		drawEffect();
+		glTranslatef(0, height, 0);
 		glRotatef(yaw, 0, 1, 0); //Set Yaw
 		actJoint(PIVOT);
 		glScalef(0.45, 0.45, 0.45); 
@@ -170,11 +169,14 @@ void Craftian::draw()
 				actJoint(TORSO$R_ARM);
 				//jointEnd();
 				glTranslatef(-skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
-				Item item;
-				glTranslatef(0, -0.1, -0.05);
-				glRotatef(-90, 0, 1, 0);
-				glRotatef(-45, 0, 0, 1);
-				item.draw();
+				if (hasSword)
+				{
+					Item item;
+					glTranslatef(0, -0.1, -0.05);
+					glRotatef(-90, 0, 1, 0);
+					glRotatef(-45, 0, 0, 1);
+					item.draw();
+				}
 			glPopMatrix();
 
 			//Right Hand
@@ -217,6 +219,7 @@ void Craftian::update()
 	if (height<targetHeight) height += targetHeight / 15;
 	else if (targetHeight < 0) targetHeight = 0, height = 0;
 	else height = targetHeight;
+	Skeleton::update();
 }
 
 void Craftian::jump()

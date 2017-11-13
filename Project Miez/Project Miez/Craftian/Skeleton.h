@@ -16,7 +16,9 @@ public:
 		GANGNAM,
 		SOMERSAULT,
 		WAVEHAND_L,
-		WAVEHAND_R
+		WAVEHAND_R,
+		DA,
+		MEOW
 	};
 protected:
 	Joint joints[7];

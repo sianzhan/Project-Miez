@@ -9,6 +9,8 @@ class App : public Display, public Input
 	int iSkin;
 	std::vector<GLuint> dbTex;
 	bool mouseLock = 0;
+	bool day = 1; //day or night
+	bool sai = 0;
 	virtual void draw();
 	virtual void timer();
 	virtual void keyDown(int key);

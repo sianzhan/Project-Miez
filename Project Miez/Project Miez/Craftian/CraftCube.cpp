@@ -14,12 +14,14 @@ void CraftCube::draw()
 	depthZ = (faces[4].btmRight.x - faces[4].topLeft.x);
 
 	//Top - XZ Plane - Pos Y
+	glNormal3f(0, 1, 0);
 	glTexCoord2d(faces[0].topLeft.x, faces[0].topLeft.y); glVertex3d(depthX, depthY, -depthZ); //Top Left
 	glTexCoord2d(faces[0].btmRight.x, faces[0].topLeft.y); glVertex3d(depthX, depthY, depthZ); //Top Right
 	glTexCoord2d(faces[0].btmRight.x, faces[0].btmRight.y); glVertex3d(-depthX, depthY, depthZ); //Btm Right
 	glTexCoord2d(faces[0].topLeft.x, faces[0].btmRight.y); glVertex3d(-depthX, depthY, -depthZ); //Btm Left
 
 	//Btm - XZ Plane - Neg Y
+	glNormal3f(0, 1, 1);
 	glTexCoord2d(faces[1].topLeft.x, faces[1].topLeft.y); glVertex3d(depthX, -depthY, -depthZ); //Top Left
 	glTexCoord2d(faces[1].btmRight.x, faces[1].topLeft.y); glVertex3d(depthX, -depthY, depthZ); //Top Right
 	glTexCoord2d(faces[1].btmRight.x, faces[1].btmRight.y); glVertex3d(-depthX, -depthY, depthZ); //Btm Right

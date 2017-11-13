@@ -17,6 +17,7 @@ class Craftian : public Skeleton
 	int headCount = 0;
 	int id_effect = 0;
 	int targetHeadCount = 0;
+	bool hasSword = 1;
 	void test(int i);
 	void drawEffect();
 
@@ -29,7 +30,11 @@ public:
 	void move(int x, int y);
 	void jump();
 	void update();
+	const Point& getPos() const {
+		return this->pos;
+	}
 	void changeYaw(float yaw);
 	void changePitch(float pitch);
 	void effect(int e) { this->id_effect = e; };
+	void toggleSword() { hasSword = (hasSword + 1) % 2; }
 };

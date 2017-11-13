@@ -50,7 +50,7 @@ void Display::init()
 	int one = 1;
 	char * name = "name";
 	glutInit(&one, &name);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //GLUT_MULTISAMPLE anti-aliasing
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_STENCIL); //GLUT_MULTISAMPLE anti-aliasing
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow(windowName.c_str());
@@ -63,6 +63,10 @@ void Display::init()
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glClearDepth(1.0f);
 
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND); //For Transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

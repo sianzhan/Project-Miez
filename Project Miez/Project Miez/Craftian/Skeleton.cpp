@@ -370,6 +370,56 @@ void Skeleton::update()
 		else if (tick > 20)
 			animate(NONE);
 		break;
+	case DA:
+		
+		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, sin(tick / 7.0) * 10);
+		targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, cos(tick / 7.0) * 90 - 80);
+		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(tick / 7.0) * 10);
+		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, -cos(tick / 7.0) * 90 + 80);
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, cos(tick / 14.0) * 60);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, -cos(tick / 14.0) * 60);
+		setHeight(sin(tick / 7.0) / 1.5);
+		
+		break;
+	case MEOW:
+		if (tick == 1) {
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -50);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 30);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -50);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -30);
+		}
+		else if (tick == 4)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -100);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 30);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -100);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, -30);
+		}
+		else if (tick == 8)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -130);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, -15);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -130);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 15);
+		}
+		else if (tick == 12)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, -100);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, -30);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -100);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 30);
+		}
+		else if (tick == 17)
+		{
+			targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, 0);
+			targets[TORSO$R_ARM].setAngle(Joint::Z_AXIS, 0);
+		}
+		else if (tick > 20)
+			animate(NONE);
+		break;
+
 	case NONE:
 	default:;
 	}
