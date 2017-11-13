@@ -15,8 +15,10 @@ class Craftian : public Skeleton
 	float yaw = 0;
 	float roll = 0;
 	int headCount = 0;
+	int id_effect = 0;
 	int targetHeadCount = 0;
 	void test(int i);
+	void drawEffect();
 
 public:
 	Craftian(GLuint texId, float size) :cube(texId, size), skin(texId,size) {}
@@ -29,4 +31,5 @@ public:
 	void update();
 	void changeYaw(float yaw);
 	void changePitch(float pitch);
+	void effect(int e) { this->id_effect = e; };
 };

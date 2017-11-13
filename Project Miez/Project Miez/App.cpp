@@ -7,6 +7,7 @@ App::App() :iSkin(0), robot(nullptr){}
 
 void App::init()
 {
+	srand(time(nullptr));
 	Display::init();
 	Input::init();
 	for (int i = 0;; ++i)
@@ -111,6 +112,25 @@ void App::keyDown(int key)
 		break;
 	}
 }
+int counter = 0;
+void App::inputMouse(int button, int state, int x, int y)
+{
+	switch (button)
+	{
+		case LEFT:
+			robot->animate(Skeleton::WAVEHAND_R);
+			robot->effect(++counter);
+			break;
+		case RIGHT:
+			robot->animate(Skeleton::WAVEHAND_L);
+			robot->effect(--counter);
+			break;
+		case MIDDLE:
+			break;
+		default:;
+	}
+}
+
 void App::moveMouse(int x, int y)
 {
 	if (mouseLock) {

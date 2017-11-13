@@ -12,6 +12,7 @@ class App : public Display, public Input
 	virtual void draw();
 	virtual void timer();
 	virtual void keyDown(int key);
+	virtual void inputMouse(int button, int state, int x, int y);
 	virtual void moveMouse(int x, int y);
 public:
 	App();

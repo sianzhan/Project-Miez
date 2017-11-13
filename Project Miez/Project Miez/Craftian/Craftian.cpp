@@ -1,5 +1,6 @@
 #include "Craftian.h"
 #include "../Item/Item.h"
+#include <vector>
 #define PI 3.14159
 
 void Craftian::test(int i)
@@ -59,20 +60,42 @@ void Craftian::test(int i)
 	}
 }
 
+void Craftian::drawEffect()
+{
+	static std::vector<paramRotate> balls;
+	glPushMatrix();
+
+	if (id_effect > 0 && id_effect < 50)
+	{
+		while (balls.size() < id_effect) {
+			balls.push_back(paramRotate(rand()%360, ((rand() % 134)-67) / 67.0, (rand() % 250 - 125) / 125.0, (rand() % 34 - 17) / 17.0));
+		}
+		for (int i = 0; i < id_effect; ++i)
+		{
+			glColor3f(id_effect *  (rand()%10) / 15.0, id_effect * ( rand()%10) / 15.0, id_effect * (rand()%10) / 15.0);
+			balls[i].angle += (rand() % 17) / 17.0;
+			glTranslatef(0, 0.3, 0);
+			glRotatef(balls[i].angle, balls[i].x, balls[i].y, balls[i].z);
+			
+			glutSolidSphere(0.005, 10, 10);
+		}
+	}
+	glPopMatrix();
+}
+
 void Craftian::draw()
 {
 	Craftian::update();
 	Skeleton::update();
 	glPushMatrix();
 	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
-
+		drawEffect();
 		glRotatef(yaw, 0, 1, 0); //Set Yaw
 		actJoint(PIVOT);
 		glScalef(0.45, 0.45, 0.45); 
 		float rise = fmax(fabs(cos(getJoint(TORSO$R_LEG).getAngle(Joint::X_AXIS) * PI / 180))
 			, fabs(cos(getJoint(TORSO$L_LEG).getAngle(Joint::X_AXIS) * PI / 180)));
 		//height according to leg height
-
 		if (getAnimation() == RUN) rise = rise * 0.05 + 0.95;
 		glTranslatef(0, 2*skin.lenY(Skin::L_LEG)*rise, 0); //Set the joint of torso to bottom
 
@@ -101,21 +124,21 @@ void Craftian::draw()
 		cube.drawSkinPart(Skin::TORSO);
 		glPushMatrix();
 			glPushMatrix(); //Set the joint of arm to 17/20 of torso
-				glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
 				//jointBegin(TORSO$R_ARM);
 				actJoint(TORSO$R_ARM);
 				//jointEnd();
-				glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+				glTranslatef(-skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
 			
 				cube.drawSkinPart(Skin::R_ARM);
 			glPopMatrix();
 
 			glPushMatrix(); //Set the joint of arm to 17/20 of torso
-				glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
 				//jointBegin(TORSO$L_ARM);
 				actJoint(TORSO$L_ARM);
 				//jointEnd();
-				glTranslatef(-skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+				glTranslatef(skin.lenX(Skin::L_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
 				cube.drawSkinPart(Skin::L_ARM);
 			glPopMatrix();
 			glTranslatef(0, skin.lenY(Skin::TORSO), 0); //Set the joint to torso top
@@ -142,11 +165,11 @@ void Craftian::draw()
 		glPushMatrix();
 			//Left Hand
 			glPushMatrix(); //Set the joint of arm to 17/20 of torso
-				glTranslatef(skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
+				glTranslatef(-skin.lenX(Skin::TORSO), skin.lenY(Skin::TORSO)*0.7, 0);
 				//jointBegin(TORSO$R_ARM);
 				actJoint(TORSO$R_ARM);
 				//jointEnd();
-				glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+				glTranslatef(-skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
 				Item item;
 				glTranslatef(0, -0.1, -0.05);
 				glRotatef(-90, 0, 1, 0);

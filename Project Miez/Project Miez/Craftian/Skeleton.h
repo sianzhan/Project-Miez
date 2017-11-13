@@ -14,7 +14,9 @@ public:
 		HELLO,
 		DANCE,
 		GANGNAM,
-		SOMERSAULT
+		SOMERSAULT,
+		WAVEHAND_L,
+		WAVEHAND_R
 	};
 protected:
 	Joint joints[7];

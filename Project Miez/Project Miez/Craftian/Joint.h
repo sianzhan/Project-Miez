@@ -7,6 +7,7 @@ struct paramRotate
 	float y;
 	float z;
 	paramRotate() :angle(0), x(0), y(0), z(0) {}
+	paramRotate(float a, float x, float y, float z) : angle(a), x(x), y(y), z(z) {}
 };
 
 class Joint
