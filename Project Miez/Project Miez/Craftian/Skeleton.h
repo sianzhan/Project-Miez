@@ -14,10 +14,11 @@ public:
 		HELLO,
 		DANCE,
 		GANGNAM,
+		SOMERSAULT
 	};
 protected:
-	Joint joints[6];
-	Joint targets[6];
+	Joint joints[7];
+	Joint targets[7];
 	float height = 0;
 	float targetHeight = 0;
 	void resetJoint();
@@ -33,6 +34,7 @@ public:
 		TORSO$L_ARM,
 		TORSO$R_LEG,
 		TORSO$L_LEG,
+		PIVOT
 	};
 	void actJoint(JOINT);
 	void setJoint(JOINT joint, Joint::rotateAxis axis, float a, float x, float y, float z) 

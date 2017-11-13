@@ -1,16 +1,16 @@
 #pragma once
 #include <algorithm>
+struct paramRotate
+{
+	float angle;
+	float x;
+	float y;
+	float z;
+	paramRotate() :angle(0), x(0), y(0), z(0) {}
+};
+
 class Joint
 {
-	struct paramRotate
-	{
-		float angle;
-		float x;
-		float y;
-		float z;
-		paramRotate() :angle(0), x(0), y(0), z(0) {}
-	};
-
 	paramRotate rot[3];
 public:
 	Joint() { 

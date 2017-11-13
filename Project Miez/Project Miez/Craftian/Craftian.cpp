@@ -66,6 +66,7 @@ void Craftian::draw()
 	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
 
 		glRotatef(yaw, 0, 1, 0); //Set Yaw
+		actJoint(PIVOT);
 		glScalef(0.45, 0.45, 0.45); 
 
 		float rise = fmax(fabs(cos(getJoint(TORSO$R_LEG).getAngle(Joint::X_AXIS) * PI / 180))

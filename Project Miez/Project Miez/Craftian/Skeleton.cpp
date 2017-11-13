@@ -8,7 +8,7 @@ void Skeleton::actJoint(JOINT joint)
 
 void Skeleton::resetJoint()
 {
-	for (int i = 0; i < 6; ++i) targets[i] = Joint();
+	for (int i = 0; i < 7; ++i) targets[i] = Joint();
 }
 
 void Skeleton::toggleAnimation(ANI ani)
@@ -45,8 +45,11 @@ void Skeleton::update()
 		break;
 	case BOW:
 		targets[TORSO].setAngle(Joint::X_AXIS, 80);
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, 0);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, 0);
 		break;
 	case SIT:
+		targets[TORSO].setAngle(Joint::X_AXIS, 0);
 		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, -90);
 		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, -90);
 		break;
@@ -275,22 +278,66 @@ void Skeleton::update()
 			targets[TORSO].setAngle(Joint::X_AXIS, 0);
 			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
 		}
+		break;
+	case SOMERSAULT:
+		targets[PIVOT].setAngle(Joint::X_AXIS, tick * 9);
+
+		if (tick == 1)
+		{
+			this->setHeight(0.8);
+			targets[TORSO].setAngle(Joint::X_AXIS, 45);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 90);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -90);
+			break;
+		}
+		else if (tick == 5)
+		{
+			targets[TORSO].setAngle(Joint::X_AXIS, 100);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 90);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -90);
+		}
+		else if (tick == 15)
+		{
+			targets[TORSO].setAngle(Joint::X_AXIS, 120);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 90);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -90);
+		}
+		else if (tick == 30)
+		{
+			targets[TORSO].setAngle(Joint::X_AXIS, 70);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 150);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -150);
+		}
+		else if (tick == 40)
+		{
+			targets[TORSO].setAngle(Joint::X_AXIS, 20);
+			targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, 30);
+			targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, -30);
+		}
+		else if (tick > 45)
+		{
+			joints[PIVOT].setAngle(Joint::X_AXIS, 0);
+			targets[PIVOT].setAngle(Joint::X_AXIS, 0);
+			animate(STILL);
+		}
+		
 		
 	default:;
 	}
 
 
-	for (int i = 0; i < 6; ++i)
+	for (int i = 0; i < 7; ++i)
 	{
 		for (int j = 0; j < 3; ++j)
 		{
-			if (joints[i].getAngle(j) != targets[i].getAngle(j))
-				joints[i].setAngle(j, (joints[i].getAngle(j) + targets[i].getAngle(j))/2);
-			if (joints[i].getX(j) != targets[i].getX(j))
+			if (fabs(joints[i].getAngle(j) - targets[i].getAngle(j)) > 0.001) {
+				joints[i].setAngle(j, (joints[i].getAngle(j) + targets[i].getAngle(j)) / 2);
+			}
+			if (fabs(joints[i].getX(j) - targets[i].getX(j)) > 0.001)
 				joints[i].setX(j, (joints[i].getX(j) + targets[i].getX(j))/2);
-			if (joints[i].getY(j) != targets[i].getY(j))
+			if (fabs(joints[i].getY(j) != targets[i].getY(j)) > 0.001)
 				joints[i].setY(j, (joints[i].getY(j) + targets[i].getY(j))/2);
-			if (joints[i].getZ(j) != targets[i].getZ(j))
+			if (fabs(joints[i].getZ(j) != targets[i].getZ(j)) > 0.001)
 				joints[i].setZ(j, (joints[i].getZ(j) + targets[i].getZ(j))/2);
 		}
 	}

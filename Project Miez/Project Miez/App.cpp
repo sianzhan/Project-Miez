@@ -66,6 +66,9 @@ void App::keyDown(int key)
 	case'n':
 		robot->toggleAnimation(Skeleton::SIT);
 		break;
+	case 'm':
+		robot->toggleAnimation(Skeleton::SOMERSAULT);
+		break;
 	case'j':
 		robot->animate(Skeleton::PLACE_HEAD);
 		robot->headStack();
