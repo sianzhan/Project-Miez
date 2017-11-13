@@ -2,8 +2,9 @@
 #include "Display.h"
 #include "Input.h"
 #include "Craftian/Craftian.h"
+#include"Item/Item.h"
 class App : public Display, public Input
-{
+{	
 	Craftian *robot;
 	int iSkin;
 	std::vector<GLuint> dbTex;
