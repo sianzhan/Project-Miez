@@ -108,8 +108,8 @@ void App::keyDown(int key)
 		robot->toggleAnimation(Skeleton::GANGNAM);
 		break;
 	case'4':
-		
-		break;
+		robot->toggleAnimation(Skeleton::FLOWER);
+
 	}
 }
 int counter = 0;

@@ -85,6 +85,7 @@ void Craftian::drawEffect()
 
 void Craftian::draw()
 {
+	
 	Craftian::update();
 	Skeleton::update();
 	glPushMatrix();
