@@ -106,6 +106,7 @@ void Craftian::draw()
 			actJoint(TORSO$R_ARM);
 			//jointEnd();
 			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+			glDepthMask(GL_FALSE);
 			Item item;
 			
 			cube.drawSkinPart(Skin::R_ARM);
@@ -115,7 +116,7 @@ void Craftian::draw()
 			glRotatef(-45,0,0,1);
 			item.draw();
 			glPopMatrix();
-			
+			glDepthMask(GL_TRUE);
 		glPopMatrix();
 
 		glPushMatrix(); //Set the joint of arm to 17/20 of torso
