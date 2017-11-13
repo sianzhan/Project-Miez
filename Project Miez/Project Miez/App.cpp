@@ -103,7 +103,9 @@ void App::keyDown(int key)
 	case'3':
 		robot->toggleAnimation(Skeleton::GANGNAM);
 		break;
-
+	case'4':
+		
+		break;
 	}
 }
 void App::moveMouse(int x, int y)

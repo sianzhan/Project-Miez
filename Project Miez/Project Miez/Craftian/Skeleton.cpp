@@ -275,6 +275,7 @@ void Skeleton::update()
 			targets[TORSO].setAngle(Joint::X_AXIS, 0);
 			targets[TORSO$HEAD].setAngle(Joint::X_AXIS, 0);
 		}
+		break;
 		
 	default:;
 	}

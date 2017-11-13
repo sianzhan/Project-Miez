@@ -125,6 +125,7 @@
     <ClCompile Include="Craftian\Skeleton.cpp" />
     <ClCompile Include="Craftian\Skin.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Craftian\Skin.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Dim.h" />
+    <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
 #include "Craftian.h"
+#include "../Item/Item.h"
 #define PI 3.14159
 
 void Craftian::test(int i)
@@ -60,13 +61,13 @@ void Craftian::test(int i)
 
 void Craftian::draw()
 {
+	;
 	Skeleton::update();
 	glPushMatrix();
 	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
 
 		glRotatef(yaw, 0, 1, 0); //Set Yaw
 		glScalef(0.45, 0.45, 0.45); 
-
 		float rise = fmax(fabs(cos(getJoint(TORSO$R_LEG).getAngle(Joint::X_AXIS) * PI / 180))
 			, fabs(cos(getJoint(TORSO$L_LEG).getAngle(Joint::X_AXIS) * PI / 180)));
 		if (getAnimation() == RUN) rise = rise * 0.05 + 0.95;
@@ -102,7 +103,16 @@ void Craftian::draw()
 			actJoint(TORSO$R_ARM);
 			//jointEnd();
 			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
+			Item item;
+			
 			cube.drawSkinPart(Skin::R_ARM);
+			glPushMatrix();
+			glTranslatef(0,-0.13,0);
+			glRotatef(-90,0,1,0);
+			glRotatef(-45,0,0,1);
+			item.draw();
+			glPopMatrix();
+			
 		glPopMatrix();
 
 		glPushMatrix(); //Set the joint of arm to 17/20 of torso
@@ -130,6 +140,8 @@ void Craftian::draw()
 		glTranslatef(0, 2*skin.lenY(Skin::HEAD), 0);
 
 		test(0);
+
+		glPopMatrix();
 
 	glPopMatrix();
 
