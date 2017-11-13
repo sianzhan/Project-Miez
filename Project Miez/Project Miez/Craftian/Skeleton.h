@@ -17,10 +17,13 @@ public:
 		SOMERSAULT,
 		WAVEHAND_L,
 		WAVEHAND_R,
+		FLOWER,
+		WAVEHAND_R,
 		DA,
 		MEOW
 	};
 protected:
+	int i = 0;
 	Joint joints[7];
 	Joint targets[7];
 	float height = 0;

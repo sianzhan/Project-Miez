@@ -181,6 +181,8 @@ void App::keyDown(int key)
 		robot->toggleAnimation(Skeleton::GANGNAM);
 		break;
 	case'4':
+		robot->toggleAnimation(Skeleton::FLOWER);
+
 
 		break;
 	case 'q':
