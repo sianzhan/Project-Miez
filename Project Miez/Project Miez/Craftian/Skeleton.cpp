@@ -36,8 +36,8 @@ void Skeleton::update()
 		break;
 	case RUN:
 		targets[TORSO].setAngle(Joint::X_AXIS, rand() % 10 - 5);
-		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(tick / 4.0) * 80);
-		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(tick / 4.0+PI/2) * 80);
+		targets[TORSO$L_LEG].setAngle(Joint::X_AXIS, sin(tick / 4.0) * 70);
+		targets[TORSO$R_LEG].setAngle(Joint::X_AXIS, cos(tick / 4.0+PI/2) * 70);
 		targets[TORSO$L_ARM].setAngle(Joint::X_AXIS, sin(tick / 4.0+PI/4) * 60);
 		targets[TORSO$R_ARM].setAngle(Joint::X_AXIS, cos(tick / 4.0+PI/3) * 60);
 		targets[TORSO$L_ARM].setAngle(Joint::Z_AXIS, sin(tick / 4.0) * (rand() % 40));

@@ -33,7 +33,6 @@ public:
 	void setX(int a, float f) { rot[a].x = f; }
 	void setY(int a, float f) { rot[a].y = f; }
 	void setZ(int a, float f) { rot[a].z = f; }
-
 	const float& getAngle(int a) const{ return rot[a].angle; }
 	const float& getX(int a) const{ return rot[a].x; }
 	const float& getY(int a) const{ return rot[a].y; }
