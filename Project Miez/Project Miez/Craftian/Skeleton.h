@@ -18,6 +18,8 @@ public:
 protected:
 	Joint joints[6];
 	Joint targets[6];
+	float height = 0;
+	float targetHeight = 0;
 	void resetJoint();
 	unsigned long long tick = 0;
 protected:
@@ -42,4 +44,6 @@ public:
 	void toggleAnimation(ANI);
 	ANI getAnimation() { return ani; }
 	void update();
+	void setHeight(float h) { this->targetHeight = h; }
+	const float& getHeight() const { return this->height; }
 };

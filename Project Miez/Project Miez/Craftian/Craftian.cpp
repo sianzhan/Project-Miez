@@ -61,7 +61,7 @@ void Craftian::test(int i)
 
 void Craftian::draw()
 {
-	;
+	Craftian::update();
 	Skeleton::update();
 	glPushMatrix();
 	    glTranslatef(pos.x/100, -0.4 + height, pos.y/100);
@@ -70,6 +70,8 @@ void Craftian::draw()
 		glScalef(0.45, 0.45, 0.45); 
 		float rise = fmax(fabs(cos(getJoint(TORSO$R_LEG).getAngle(Joint::X_AXIS) * PI / 180))
 			, fabs(cos(getJoint(TORSO$L_LEG).getAngle(Joint::X_AXIS) * PI / 180)));
+		//height according to leg height
+
 		if (getAnimation() == RUN) rise = rise * 0.05 + 0.95;
 		glTranslatef(0, 2*skin.lenY(Skin::L_LEG)*rise, 0); //Set the joint of torso to bottom
 
@@ -158,16 +160,12 @@ void Craftian::setSkin(GLuint texId, float size)
 
 
 void Craftian::move(int x, int y){
-	if (x == 0 && y == 0 && height == 0)
+	if (x == 0 && y == 0)
 	{
 		if(ani == RUN) animate(STILL);
 	}
 	else
 	{
-		if (targetHeight > 0) targetHeight -= 0.1;
-		if(height<targetHeight) height += targetHeight/10;
-		else if (targetHeight < 0) targetHeight = 0, height = 0;
-		else height = targetHeight;
 		pos.x += x * cos(yaw * PI / 180) + y * sin(yaw * PI / 180);
 		pos.y += y * cos(yaw * PI / 180) - x * sin(yaw * PI / 180);
 
@@ -178,9 +176,17 @@ void Craftian::move(int x, int y){
 	}
 }
 
+void Craftian::update()
+{
+	if (targetHeight > 0) targetHeight -= 0.02;
+	if (height<targetHeight) height += targetHeight / 15;
+	else if (targetHeight < 0) targetHeight = 0, height = 0;
+	else height = targetHeight;
+}
+
 void Craftian::jump()
 {
-	targetHeight = 1;
+	if(height < 0.1) targetHeight = 0.5;
 }
 
 void Craftian::changeYaw(float yaw)
