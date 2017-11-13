@@ -106,10 +106,10 @@ void Craftian::draw()
 			actJoint(TORSO$R_ARM);
 			//jointEnd();
 			glTranslatef(skin.lenX(Skin::R_ARM), -skin.lenY(Skin::TORSO)*0.8, 0);
-			glDepthMask(GL_FALSE);
-			Item item;
 			
 			cube.drawSkinPart(Skin::R_ARM);
+			glDepthMask(GL_FALSE);
+			Item item;
 			glPushMatrix();
 			glTranslatef(0,-0.13,0);
 			glRotatef(-90,0,1,0);
